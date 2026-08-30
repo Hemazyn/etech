@@ -4,69 +4,56 @@ import { useRef, useState, useEffect, useCallback } from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import Link from "next/link"
 import {
-  Monitor,
-  Cloud,
-  Shield,
-  Settings,
   ArrowRight,
   CheckCircle2,
   Zap,
   Users,
   Clock,
-  TrendingUp,
-  Wifi,
-  Headphones,
-  Server,
-  Database,
-  Mail,
   Star,
+  ShoppingCart,
+  Wrench,
+  Smartphone,
+  HardDrive,
 } from "lucide-react"
 import Button from "@/components/Button"
 import SectionDivider from "@/components/SectionDivider"
 
 const services = [
-  { icon: Monitor, title: "Managed IT", description: "End-to-end IT management so you can focus on growing your business." },
-  { icon: Cloud, title: "Cloud Solutions", description: "Migrate, optimize, and manage your cloud infrastructure seamlessly." },
-  { icon: Shield, title: "Cybersecurity", description: "Enterprise-grade security to protect your business from threats." },
-  { icon: Settings, title: "IT Consulting", description: "Strategic technology roadmaps aligned with your business goals." },
-  { icon: Wifi, title: "Network Solutions", description: "Robust network infrastructure design, deployment, and management." },
-  { icon: Headphones, title: "IT Support", description: "Responsive help desk support for your team, 24/7." },
-  { icon: Server, title: "Data Center", description: "Comprehensive data center management and optimization." },
-  { icon: Database, title: "Data Management", description: "Organize, protect, and leverage your data as a strategic asset." },
-  { icon: Mail, title: "Business Comms", description: "Unified communication solutions for modern teams." },
+  { icon: ShoppingCart, title: "Computer Sales", description: "New and refurbished computers, laptops, and peripherals tailored to your business needs." },
+  { icon: Smartphone, title: "Mobile Device Sales", description: "Smartphones, tablets, and accessories from top brands with business pricing." },
+  { icon: Wrench, title: "Computer Repairs", description: "Fast, reliable hardware and software repairs with same-day turnaround available." },
+  { icon: HardDrive, title: "Data Recovery", description: "Retrieve lost data from damaged or failing drives with our specialized recovery tools." },
 ]
 
 const typingWords = [
-  "IT Excellence",
-  "Managed IT",
-  "Cloud Solutions",
-  "Cybersecurity",
-  "Network Solutions",
-  "Data Management",
-  "IT Consulting",
-  "24/7 Support",
+  "Computer Sales",
+  "Expert Repairs",
+  "Device Solutions",
+  "Data Recovery",
+  "Tech Support",
+  "Business IT",
 ]
 
 const stats = [
-  { value: "500+", label: "Clients Served", icon: Users },
+  { value: "1000+", label: "Devices Sold", icon: ShoppingCart },
   { value: "15+", label: "Years Experience", icon: Clock },
-  { value: "99.9%", label: "Uptime Guarantee", icon: TrendingUp },
-  { value: "24/7", label: "Support Available", icon: Zap },
+  { value: "500+", label: "Repairs Completed", icon: Wrench },
+  { value: "24h", label: "Turnaround Time", icon: Zap },
 ]
 
 const testimonials = [
-  { name: "Sarah Mitchell", role: "CTO, Apex Financial Group", quote: "Etech transformed our entire IT infrastructure. They reduced our downtime by 95% and saved us over $200K annually.", rating: 5 },
-  { name: "James Rodriguez", role: "Ops Director, Meridian Healthcare", quote: "Their cybersecurity team identified vulnerabilities we didn't even know existed. We now have complete peace of mind.", rating: 5 },
-  { name: "Emily Chen", role: "CEO, Greenfield Logistics", quote: "From cloud migration to ongoing support, Etech has been an invaluable partner. They truly understand our business.", rating: 5 },
+  { name: "Sarah Mitchell", role: "Office Manager, Apex Financial", quote: "Etech helped us upgrade 50 workstations seamlessly. Their sales team found the perfect fit for our budget and needs.", rating: 5 },
+  { name: "James Rodriguez", role: "Owner, Rodriguez Law Firm", quote: "My laptop crashed right before a major deadline. Etech had it repaired and back to me the same day. Lifesavers!", rating: 5 },
+  { name: "Emily Chen", role: "Director, Greenfield Logistics", quote: "We buy all our equipment from Etech now. Great prices, honest advice, and their repair team is always responsive.", rating: 5 },
 ]
 
 const whyChooseUs = [
-  "Industry-leading 99.9% uptime guarantee",
-  "Dedicated account managers for every client",
-  "Proactive monitoring prevents issues before they occur",
-  "Scalable solutions that grow with your business",
-  "Transparent pricing with no hidden fees",
-  "Certified engineers across all major platforms",
+  "Wide selection of new & refurbished computers",
+  "Same-day repairs for most hardware issues",
+  "Competitive pricing with no hidden fees",
+  "15+ years of trusted service in Austin",
+  "Data recovery from any storage device",
+  "Expert advice to find the right fit for your budget",
 ]
 
 // Typing text — premium typewriter effect
@@ -131,7 +118,7 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
-    <section ref={ref} className="relative flex min-h-[max(600px,30vh)] items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative flex min-h-[max(800px,30vh)] items-center justify-center overflow-hidden">
       {/* Background — layered radial gradients, no noise */}
       <div className="absolute inset-0 bg-white" />
       <div
@@ -170,23 +157,23 @@ function Hero() {
 
         {/* Subtitle */}
         <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} className="text-slate-custom/50 mx-auto mt-8 max-w-xl text-base leading-relaxed sm:text-lg">
-          Enterprise-grade IT solutions and strategic consulting to keep your technology running at peak performance.
+          Quality computer sales, expert repairs, and reliable tech solutions for businesses and individuals in Austin.
         </motion.p>
 
         {/* CTAs */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.9 }} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Button href="/contact" size="lg">
-            Get a Free Consultation
+            Get a Free Quote
             <ArrowRight className="h-4 w-4" />
           </Button>
           <Button href="/services" variant="outline" size="lg">
-            Explore Services
+            View Services
           </Button>
         </motion.div>
 
         {/* Trust row */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }} className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          {["No lock-in contracts", "Free initial assessment", "Same-day response"].map((text, i) => (
+          {["No lock-in contracts", "Free initial assessment", "Same-day repairs available"].map((text, i) => (
             <motion.span key={text} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.3 + i * 0.1 }} className="text-slate-custom/40 flex items-center gap-2 text-xs font-medium">
               <CheckCircle2 className="text-primary-400 h-3.5 w-3.5" />
               {text}
@@ -255,11 +242,11 @@ function ServicesGrid() {
             What We Do
           </motion.p>
           <motion.h2 initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="mt-3 font-display text-3xl font-black tracking-tight text-obsidian sm:text-4xl lg:text-5xl">
-            Comprehensive IT <span className="text-primary-600">Solutions</span>
+            Sales & Repairs <span className="text-primary-600">You Can Trust</span>
           </motion.h2>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -281,8 +268,8 @@ function ServicesGrid() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-12 text-center">
-          <Button href="/services" variant="outline">
-            View All Services
+          <Button href="/contact" variant="outline">
+            Get a Free Quote
             <ArrowRight className="h-4 w-4" />
           </Button>
         </motion.div>
@@ -302,13 +289,13 @@ function WhyChooseUs() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <motion.p initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }} className="text-xs font-bold tracking-[0.2em] text-primary-500 uppercase">
-              Why Etech
+              Why Choose Us
             </motion.p>
             <motion.h2 initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="mt-2 font-display text-3xl font-black tracking-tight text-obsidian sm:text-4xl">
-              Built for Business, <span className="text-primary-600">Backed by Experts</span>
+              Quality Gear, <span className="text-primary-600">Expert Repairs</span>
             </motion.h2>
             <motion.p initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.2 }} className="mt-4 text-sm leading-relaxed text-slate-custom/60 sm:text-base">
-              With over 15 years in the industry, we&apos;ve helped hundreds of businesses optimize their technology and reduce costs.
+              With over 15 years serving Austin, we&apos;ve built a reputation for honest advice, quality equipment, and fast repairs that keep your business running.
             </motion.p>
             <div className="mt-8 space-y-3">
               {whyChooseUs.map((item, i) => (
@@ -319,7 +306,7 @@ function WhyChooseUs() {
               ))}
             </div>
             <motion.div initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.8 }} className="mt-8">
-              <Button href="/about">Learn More About Us</Button>
+              <Button href="/contact">Get a Free Quote</Button>
             </motion.div>
           </div>
 
@@ -327,9 +314,9 @@ function WhyChooseUs() {
             <div className="rounded-2xl border border-primary-100 bg-white p-8 shadow-[0_1px_3px_rgba(15,23,42,0.04)]">
               <div className="space-y-6">
                 {[
-                  { icon: Shield, title: "Enterprise-Grade Security", desc: "SOC 2 Type II compliant processes" },
-                  { icon: Clock, title: "15-Minute Response Time", desc: "Critical issues resolved fast" },
-                  { icon: Users, title: "Dedicated Support Team", desc: "Your own account manager & engineers" },
+                  { icon: ShoppingCart, title: "Quality Equipment", desc: "New & refurbished computers from trusted brands" },
+                  { icon: Clock, title: "Fast Turnaround", desc: "Same-day repairs for most issues" },
+                  { icon: Users, title: "Trusted Since 2009", desc: "15+ years serving Austin businesses" },
                 ].map((item, i) => (
                   <motion.div key={item.title} initial={{ opacity: 0, x: 20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.5, delay: 0.4 + i * 0.15 }}>
                     <div className="flex items-center gap-4">
@@ -418,14 +405,14 @@ function CTASection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <motion.h2 initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="font-display text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Ready to Transform <span className="text-gradient-primary">Your IT</span>?
+            Ready to Upgrade <span className="text-gradient-primary">Your Tech</span>?
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }} className="mt-5 text-base leading-relaxed text-slate-300">
-            Schedule a free consultation. We&apos;ll assess your infrastructure and recommend the best path forward.
+            Whether you need new equipment or a quick repair, we&apos;re here to help. Get a free quote today.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 15 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.3 }} className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-8 py-3.5 text-base font-bold text-white shadow-[0_4px_20px_rgba(79,70,229,0.35)] transition-all hover:bg-primary-700 hover:shadow-[0_8px_32px_rgba(79,70,229,0.5)]">
-              Schedule a Consultation
+              Get a Free Quote
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a href="tel:+15125551234" className="text-sm font-semibold text-slate-300 transition-colors hover:text-white">

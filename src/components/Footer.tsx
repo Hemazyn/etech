@@ -7,11 +7,11 @@ import { Monitor, Mail, Phone, MapPin, Check } from "lucide-react";
 
 const footerLinks = {
   Services: [
-    { name: "Managed IT", href: "/services" },
-    { name: "Cloud Solutions", href: "/services" },
-    { name: "Cybersecurity", href: "/services" },
-    { name: "IT Consulting", href: "/services" },
-    { name: "Network Infrastructure", href: "/services" },
+    { name: "Computer Sales", href: "/services" },
+    { name: "Computer Repairs", href: "/services" },
+    { name: "Data Recovery", href: "/services" },
+    { name: "Peripherals & Accessories", href: "/services" },
+    { name: "Network Setup", href: "/services" },
     { name: "IT Support", href: "/services" },
   ],
   Company: [
@@ -155,8 +155,8 @@ export default function Footer() {
             </Link>
 
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-custom/50">
-              Empowering businesses with reliable IT solutions and strategic
-              consulting for over 15 years.
+              Quality computer sales, expert repairs, and reliable tech
+              solutions for Austin businesses and individuals.
             </p>
 
             <div className="mt-6 space-y-2.5">

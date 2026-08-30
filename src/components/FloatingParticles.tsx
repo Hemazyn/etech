@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useState } from "react";
 import { motion } from "framer-motion";
 
 interface Particle {
@@ -13,25 +13,34 @@ interface Particle {
   drift: number;
 }
 
+function generateParticles(): Particle[] {
+  return Array.from({ length: 16 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    size: Math.random() * 2 + 0.5,
+    duration: Math.random() * 20 + 16,
+    delay: Math.random() * 10,
+    opacity: Math.random() * 0.12 + 0.02,
+    drift: (Math.random() - 0.5) * 80,
+  }));
+}
+
+function subscribeHeight(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getSnapshot() {
+  return window.innerHeight;
+}
+
+function getServerSnapshot() {
+  return 900;
+}
+
 export default function FloatingParticles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [screenHeight, setScreenHeight] = useState(900);
-
-  useEffect(() => {
-    setScreenHeight(window.innerHeight);
-
-    const generated: Particle[] = Array.from({ length: 16 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      size: Math.random() * 2 + 0.5,
-      duration: Math.random() * 20 + 16,
-      delay: Math.random() * 10,
-      opacity: Math.random() * 0.12 + 0.02,
-      drift: (Math.random() - 0.5) * 80,
-    }));
-
-    setParticles(generated);
-  }, []);
+  const screenHeight = useSyncExternalStore(subscribeHeight, getSnapshot, getServerSnapshot);
+  const [particles] = useState<Particle[]>(generateParticles);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">

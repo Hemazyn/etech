@@ -3,26 +3,21 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { Monitor, Cloud, Shield, Settings, Wifi, Headphones, Server, Database, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Monitor, Settings, Database, Mail, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import SectionDivider from "@/components/SectionDivider";
 
 const services = [
-  { icon: Monitor, number: "01", title: "Managed IT Services", description: "We take full responsibility for your IT environment, providing proactive monitoring, maintenance, and support.", features: ["24/7 network monitoring", "Proactive system maintenance", "Help desk support", "Patch management", "Asset lifecycle management", "Vendor coordination"] },
-  { icon: Cloud, number: "02", title: "Cloud Solutions", description: "Migrate to the cloud seamlessly, optimize your infrastructure for cost and performance.", features: ["AWS, Azure & GCP expertise", "Cloud migration planning", "Cost optimization", "Hybrid cloud architecture", "Cloud security & compliance", "Disaster recovery"] },
-  { icon: Shield, number: "03", title: "Cybersecurity", description: "Protect your business with multi-layered security strategies, threat detection, and compliance support.", features: ["Threat detection & response", "Penetration testing", "Security awareness training", "Compliance (HIPAA, SOC 2, PCI)", "Firewall & endpoint protection", "Incident response planning"] },
-  { icon: Settings, number: "04", title: "IT Consulting", description: "Strategic technology planning aligned with your business objectives.", features: ["Technology roadmapping", "Digital transformation", "IT budget planning", "Vendor evaluation", "Process optimization", "M&A IT due diligence"] },
-  { icon: Wifi, number: "05", title: "Network Infrastructure", description: "Design, deploy, and manage robust network infrastructure that keeps your business connected.", features: ["Network design & architecture", "WAN & LAN optimization", "Wireless solutions", "SD-WAN implementation", "Network security", "Remote access solutions"] },
-  { icon: Headphones, number: "06", title: "IT Support & Help Desk", description: "Responsive, knowledgeable support for your team. Our help desk resolves issues quickly.", features: ["Multi-channel support", "On-site and remote support", "Software troubleshooting", "Hardware repair & replacement", "User onboarding & offboarding", "SLA-backed response times"] },
-  { icon: Server, number: "07", title: "Data Center Services", description: "Comprehensive data center management, from colocation to on-premise optimization.", features: ["Server management", "Capacity planning", "Power & cooling optimization", "Hardware lifecycle management", "Rack & stack services", "Environmental monitoring"] },
-  { icon: Database, number: "08", title: "Data Management", description: "Ensure your data is organized, accessible, protected, and leveraged as a strategic asset.", features: ["Database administration", "Data backup & recovery", "Data governance", "Analytics & BI setup", "Data migration", "Data lifecycle management"] },
-  { icon: Mail, number: "09", title: "Business Communication", description: "Unified communication solutions including email, VoIP, video conferencing, and collaboration tools.", features: ["Microsoft 365 deployment", "VoIP phone systems", "Video conferencing setup", "Team collaboration tools", "Email security", "UC platform management"] },
+  { icon: Monitor, number: "01", title: "Computer Sales", description: "New and refurbished desktops, laptops, and all-in-ones from top brands like Dell, HP, and Lenovo.", features: ["New & refurbished desktops", "Business laptops & notebooks", "All-in-one workstations", "Custom-built PCs", "Bulk ordering for businesses", "Warranty included on all sales"] },
+  { icon: Settings, number: "02", title: "Computer Repairs", description: "Fast, reliable hardware and software repairs. Most jobs completed same-day.", features: ["Screen & display replacement", "Keyboard & trackpad repair", "Battery replacement", "Motherboard & component repair", "Virus & malware removal", "OS reinstallation & recovery"] },
+  { icon: Database, number: "03", title: "Data Recovery", description: "Don't lose your important files. We specialize in recovering data from damaged or failing drives.", features: ["Hard drive recovery", "SSD data recovery", "USB & flash drive recovery", "RAID array recovery", "Deleted file recovery", "Free diagnostic assessment"] },
+  { icon: Mail, number: "04", title: "Peripherals & Accessories", description: "Monitors, printers, networking gear, and everything you need to set up your workspace.", features: ["Monitors & displays", "Printers & scanners", "Keyboards & mice", "Cables & adapters", "UPS & power protection", "Webcams & audio equipment"] },
 ];
 
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 const fadeUp = { hidden: { opacity: 0, y: 35 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } } };
 
-function ServiceSection({ service, index }: { service: (typeof services)[0]; index: number }) {
+function ServiceSection({ service }: { service: (typeof services)[0] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -60,12 +55,12 @@ export default function ServicesPage() {
 
   return (
     <div className="relative min-h-screen bg-white">
-      <PageHeader title="Our IT Services" subtitle="From managed IT to cybersecurity, we deliver comprehensive technology solutions that keep your business running at peak performance." highlight="Services" />
+      <PageHeader title="Our Services" subtitle="Quality computer sales, expert repairs, and reliable tech solutions. More services coming soon." highlight="Services" />
 
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
-            {services.map((s, i) => <ServiceSection key={s.title} service={s} index={i} />)}
+            {services.map((s) => <ServiceSection key={s.title} service={s} />)}
           </div>
         </div>
       </section>
@@ -77,11 +72,11 @@ export default function ServicesPage() {
           <div className="mb-14 text-center">
             <motion.p initial={{ opacity: 0, y: 15 }} animate={processInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }} className="text-xs font-bold tracking-[0.2em] text-primary-500 uppercase">Our Process</motion.p>
             <motion.h2 initial={{ opacity: 0, y: 15 }} animate={processInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }} className="mt-2 font-display text-3xl font-black tracking-tight text-obsidian sm:text-4xl">
-              How We <span className="text-primary-600">Work</span>
+              How It <span className="text-primary-600">Works</span>
             </motion.h2>
           </div>
           <motion.div variants={stagger} initial="hidden" animate={processInView ? "visible" : "hidden"} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[{ step: "01", title: "Discovery", desc: "We assess your current IT environment, identify pain points, and understand your goals." }, { step: "02", title: "Strategy", desc: "Our team develops a tailored technology roadmap aligned with your objectives." }, { step: "03", title: "Implementation", desc: "We deploy solutions with minimal disruption using proven methodologies." }, { step: "04", title: "Optimization", desc: "Continuous monitoring, support, and improvement for maximum value." }].map((item) => (
+            {[{ step: "01", title: "Consultation", desc: "Tell us what you need — we'll help you find the right equipment or repair solution." }, { step: "02", title: "Quote", desc: "We provide a transparent, no-obligation quote with competitive pricing." }, { step: "03", title: "Delivery or Repair", desc: "We deliver your new equipment or complete repairs, often same-day." }, { step: "04", title: "Support", desc: "Ongoing support and warranty coverage to keep you covered." }].map((item) => (
               <motion.div key={item.step} variants={fadeUp} className="text-center">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-600 text-lg font-black text-white">{item.step}</div>
                 <h3 className="mt-4 font-display text-lg font-black text-obsidian">{item.title}</h3>
@@ -96,9 +91,9 @@ export default function ServicesPage() {
         <div className="pointer-events-none absolute inset-0"><div className="absolute -left-40 top-0 h-[400px] w-[400px] rounded-full bg-primary-600/15 blur-[140px]" /></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-black tracking-tight text-white sm:text-4xl">Need a <span className="text-gradient-primary">Custom</span> Solution?</h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-300">Every business is different. Let&apos;s discuss your specific needs.</p>
-            <div className="mt-8"><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-8 py-3.5 text-base font-bold text-white shadow-[0_4px_20px_rgba(79,70,229,0.35)] transition-all hover:bg-primary-700 hover:shadow-[0_8px_32px_rgba(79,70,229,0.5)]">Get a Free Assessment<ArrowRight className="h-4 w-4" /></Link></div>
+            <h2 className="font-display text-3xl font-black tracking-tight text-white sm:text-4xl">Need Help <span className="text-gradient-primary">Choosing</span>?</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-300">Not sure what you need? We&apos;ll help you find the right solution at the right price.</p>
+            <div className="mt-8"><Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-8 py-3.5 text-base font-bold text-white shadow-[0_4px_20px_rgba(79,70,229,0.35)] transition-all hover:bg-primary-700 hover:shadow-[0_8px_32px_rgba(79,70,229,0.5)]">Get a Free Quote<ArrowRight className="h-4 w-4" /></Link></div>
           </div>
         </div>
       </section>

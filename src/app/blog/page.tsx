@@ -16,7 +16,6 @@ const blogPosts = [
 
 const categories = ["All Posts", "Managed IT", "Cybersecurity", "Cloud", "IT Strategy"];
 
-const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
 const fadeUp = { hidden: { opacity: 0, y: 35 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } } };
 
 export default function BlogPage() {

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Monitor, Mail, Phone } from "lucide-react";
+import { Monitor, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navLinks, personalInfo } from "@/data/navigation";
 import { overlayVariants, navItemVariants, EASE_OUT } from "@/lib/animations";
@@ -69,11 +69,6 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
-
-  // Close on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   // Close on escape
   useEffect(() => {

@@ -37,9 +37,6 @@ const contactMethods = [
   },
 ];
 
-const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
-const fadeUp = { hidden: { opacity: 0, y: 25 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const } } };
-
 export default function ContactPage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
