@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore, useState } from "react";
+import { useSyncExternalStore, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface Particle {
@@ -40,7 +40,11 @@ function getServerSnapshot() {
 
 export default function FloatingParticles() {
   const screenHeight = useSyncExternalStore(subscribeHeight, getSnapshot, getServerSnapshot);
-  const [particles] = useState<Particle[]>(generateParticles);
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    setParticles(generateParticles());
+  }, []);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
